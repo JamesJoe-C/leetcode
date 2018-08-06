@@ -25,8 +25,6 @@ func removeElement(nums []int, val int) int {
 		} else {
 			i++
 		}
-
 	}
-
 	return len
 }
