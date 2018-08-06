@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"strconv"
+	"math"
 )
 
 /*
@@ -25,30 +25,27 @@ import (
 假设我们的环境只能存储 32 位有符号整数，其数值范围是 [−231,  231 − 1]。根据这个假设，如果反转后的整数溢出，则返回 0。
 */
 func main() {
-	reverse(-123)
+	fmt.Println(reverse(-123))
+	fmt.Println(reverse(123))
+	fmt.Println(reverse(-33))
+	fmt.Println(reverse(33))
+	fmt.Println(reverse(-9999))
+	fmt.Println(reverse(9999))
+	fmt.Println(reverse(-100010))
+	fmt.Println(reverse(100010))
+	fmt.Println(reverse(-6553565535111))
+	fmt.Println(reverse(6553565535111))
+
 }
 
 func reverse(x int) int {
-	xx := []byte(strconv.Itoa(x))
-	//fmt.Println(xx)
-	//fmt.Println(string(xx))
-	len := len(xx)
-	y := make([]byte, len, len)
-	j := 0
-	for i := len - 1; i >= 0; i-- {
-		//fmt.Println(string(xx[i]))
-		if string(xx[i]) != "-" {
-			y[j] = xx[i]
-		}
-		j++
+	num := 0
+	for x != 0 {
+		num = num*10 + x%10
+		x = x / 10
 	}
-	fmt.Println(string(y))
-	yy := string(y)
-	if x < 0 {
-		yy = "-" + yy
+	if num > math.MaxInt32 || num < math.MinInt32 {
+		return 0
 	}
-	fmt.Println(yy)
-	rs, _ := strconv.Atoi(yy)
-	fmt.Println(rs)
-	return rs
+	return num
 }
