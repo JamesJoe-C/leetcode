@@ -36,7 +36,6 @@ func romanToInt(s string) int {
 				a = a - b
 				i--
 			}
-
 		}
 		number += a
 
