@@ -40,17 +40,17 @@ func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 	for &l2_next != nil {
 		time.Sleep(1 * time.Second)
 		if l2_next.Val >= l1_next.Val && (l1_next.Next == nil || l2_next.Val < l1_next.Next.Val) {
-			l1_next.Next = l2_next
+			l1_next.Next = &l2_next
 
-			l2_next = l2_next.Next
+			l2_next = *l2_next.Next
 		} else {
-			l1_next = l1_next.Next
+			l1_next = *l1_next.Next
 			continue
 		}
 		fmt.Println(l1_next, l2_next)
 	}
 
-	//}
+	//}ddcd
 
 	return &return_listNode
 }
