@@ -26,22 +26,19 @@ func plusOne(digits []int) []int {
 /*
 @param digits 需要递归的数组
 @param i 当前位key
-@param add 增加的值
+@param add 增加的值(这里在固定加一情况下冗余，但是为可处理+n的情况，故保留)
 */
 func carry(digits []int, i int, add int) []int {
 	end_sum := digits[i] + add
 	if end_sum >= 10 {
 		digits[i] = end_sum % 10
-		if i >= 1 {
-			digits = carry(digits, i-1, end_sum/10)
-		} else {
-			var temp_dig []int
-			temp_dig = append(temp_dig, end_sum/10)
-			temp_dig = append(temp_dig, digits...)
-
-			digits = temp_dig
+		if i < 1 {
+			//处理首位的进位
+			digits = append([]int{1}, digits...)
+			return digits
 		}
-
+		//递归调用处理进位
+		digits = carry(digits, i-1, end_sum/10)
 	} else {
 		digits[i] = end_sum
 	}
